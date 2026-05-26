@@ -100,43 +100,57 @@ function fmtDate(ymd) {
   catch(e) { return ymd; }
 }
 
-// ── Apps Script API calls ──────────────────────────────────
-// En lugar de llamar a Anthropic, llamamos directamente a tu Apps Script
-// que tiene acceso a tus Google Sheets sin necesitar API keys.
+// ── JSONP helper ───────────────────────────────────────────
+// fetch() es bloqueado por CORS cuando llama a script.google.com.
+// JSONP inyecta un <script> que no tiene restricción de origen.
+var __jpCount = 0;
+function jsonp(url) {
+  return new Promise(function(resolve, reject) {
+    var cb = "__jp" + (++__jpCount);
+    var script = document.createElement("script");
+    var timer = setTimeout(function() {
+      cleanup(); reject(new Error("Timeout: Apps Script no respondió en 30s"));
+    }, 30000);
+    function cleanup() {
+      clearTimeout(timer);
+      delete window[cb];
+      if (script.parentNode) script.parentNode.removeChild(script);
+    }
+    window[cb] = function(data) { cleanup(); resolve(data); };
+    script.onerror = function() { cleanup(); reject(new Error("Error de red al conectar con Apps Script")); };
+    script.src = url + "&callback=" + cb;
+    document.head.appendChild(script);
+  });
+}
 
+// ── Apps Script API calls ──────────────────────────────────
 async function fetchGuias(histId, date) {
-  var ef = ymdToEst(date);
+  var ef  = ymdToEst(date);
   var url = APPS_SCRIPT_URL
     + "?action=fetchGuias"
     + "&histId=" + encodeURIComponent(histId)
-    + "&fecha=" + encodeURIComponent(ef);
-  var r = await fetch(url);
-  if (!r.ok) throw new Error("Error al conectar con Apps Script: " + r.status);
-  var d = await r.json();
+    + "&fecha="  + encodeURIComponent(ef);
+  var d = await jsonp(url);
   if (d.error) throw new Error(d.error);
-  return d; // { comando: [...], webService: [...] }
+  return d;
 }
 
 async function fetchEst(estId) {
   var url = APPS_SCRIPT_URL
     + "?action=fetchEst"
     + "&estId=" + encodeURIComponent(estId);
-  var r = await fetch(url);
-  if (!r.ok) throw new Error("Error al conectar con Apps Script: " + r.status);
-  var d = await r.json();
+  var d = await jsonp(url);
   if (d.error) throw new Error(d.error);
-  return d; // { origenes: [...], destinos: [...], contenidos: [...], usuarios: [...] }
+  return d;
 }
 
 async function appendToEst(estId, sheetName, value) {
   var url = APPS_SCRIPT_URL
     + "?action=appendEst"
-    + "&estId=" + encodeURIComponent(estId)
-    + "&sheet=" + encodeURIComponent(sheetName)
-    + "&value=" + encodeURIComponent(value);
-  var r = await fetch(url);
-  if (!r.ok) throw new Error("Error al guardar en Apps Script: " + r.status);
-  var d = await r.json();
+    + "&estId="  + encodeURIComponent(estId)
+    + "&sheet="  + encodeURIComponent(sheetName)
+    + "&value="  + encodeURIComponent(value);
+  var d = await jsonp(url);
   if (d.error) throw new Error(d.error);
 }
 
