@@ -417,10 +417,10 @@ export default function App() {
 
       setLoadMsg("📋 Cargando estandarizado…");
       var estData = await fetchEst(estId);
-      var nO = new Set(estData.origenes.map(function(v){return v.toLowerCase();}));
-      var nD = new Set(estData.destinos.map(function(v){return v.toLowerCase();}));
-      var nC = new Set(estData.contenidos.map(function(v){return v.toLowerCase();}));
-      var nU = new Set(estData.usuarios.map(function(v){return v.toLowerCase();}));
+      var nO = new Set(estData.origenes.map(function(v){return String(v).toLowerCase();}));
+      var nD = new Set(estData.destinos.map(function(v){return String(v).toLowerCase();}));
+      var nC = new Set(estData.contenidos.map(function(v){return String(v).toLowerCase();}));
+      var nU = new Set(estData.usuarios.map(function(v){return String(v).toLowerCase();}));
       setEstOrig(nO); setEstDest(nD); setEstCont(nC); setEstUsers(nU);
       LS.set("estOrig",  JSON.stringify(Array.from(nO)));
       LS.set("estDest",  JSON.stringify(Array.from(nD)));
@@ -495,10 +495,10 @@ export default function App() {
     setLoading(true);
     try {
       var d = await fetchEst(estId);
-      var nO=new Set(d.origenes.map(function(v){return v.toLowerCase();}));
-      var nD=new Set(d.destinos.map(function(v){return v.toLowerCase();}));
-      var nC=new Set(d.contenidos.map(function(v){return v.toLowerCase();}));
-      var nU=new Set(d.usuarios.map(function(v){return v.toLowerCase();}));
+      var nO=new Set(d.origenes.map(function(v){return String(v).toLowerCase();}));
+      var nD=new Set(d.destinos.map(function(v){return String(v).toLowerCase();}));
+      var nC=new Set(d.contenidos.map(function(v){return String(v).toLowerCase();}));
+      var nU=new Set(d.usuarios.map(function(v){return String(v).toLowerCase();}));
       setEstOrig(nO);setEstDest(nD);setEstCont(nC);setEstUsers(nU);
       notify("Estandarizado actualizado ("+d.origenes.length+" orígenes, "+d.destinos.length+" destinos)");
     } catch(e) { notify("Error al conectar con Apps Script: "+e.message, false); }
