@@ -157,8 +157,8 @@ var tdSt = { padding:"14px 12px", fontSize:12, color:T.textPrimary };
 var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwF2KrrM0DgqntqRCf4d55SIEkMRGE2__dWZEh74LsOIQNCF_cB7CvwALEnujWLjEAM/exec";
 
 // ── Sheet IDs & config ─────────────────────────────────────
-var DEF_HIST_ID = "1Uzlnt5BtPHB8OwLvS_TrE0H9azaGL5QLd4PYEt5611M";
-var DEF_EST_ID  = "1Gt6ohFuEyQeY8hY-URxPLjX4oKGPda1BrXgLuTx3wrc";
+var DEF_HIST_ID = "1fYAY8quxOx3UPhf2HiPDR7JvDtz4eHY0BO6dzKQ0I4k";
+var DEF_EST_ID  = "1524dJe1C6Sz5GcEjGY3VK7aS9vfD2qEfwAQtfUHQsps";
 
 var VALID_CLIENTS = new Set([5011124, 8665087, 5901359, 4003984]);
 
