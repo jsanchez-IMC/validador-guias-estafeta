@@ -154,7 +154,7 @@ var thSt = {
 var tdSt = { padding:"14px 12px", fontSize:12, color:T.textPrimary };
 
 // ── URL de tu Apps Script ──────────────────────────────────
-var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwF2KrrM0DgqntqRCf4d55SIEkMRGE2__dWZEh74LsOIQNCF_cB7CvwALEnujWLjEAM/exec";
+var APPS_SCRIPT_URL = "https://script.google.com/a/macros/mobo.mx/s/AKfycbyJfCgcKuS6j35LS-g2ZJo1yuNIH8aOOOskVJSJV86hs-5-qe1GcJdpx3PasF92wrjtVg/exec";
 
 // ── Sheet IDs & config ─────────────────────────────────────
 var DEF_HIST_ID = "1fYAY8quxOx3UPhf2HiPDR7JvDtz4eHY0BO6dzKQ0I4k";
