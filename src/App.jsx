@@ -3,11 +3,11 @@ import Papa from "papaparse";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
 // ── URL de tu Apps Script ──────────────────────────────────
-var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwF2KrrM0DgqntqRCf4d55SIEkMRGE2__dWZEh74LsOIQNCF_cB7CvwALEnujWLjEAM/exec";
+var APPS_SCRIPT_URL = "https://script.google.com/a/macros/mobo.mx/s/AKfycbyJfCgcKuS6j35LS-g2ZJo1yuNIH8aOOOskVJSJV86hs-5-qe1GcJdpx3PasF92wrjtVg/exec";
 
 // ── Sheet IDs & config ─────────────────────────────────────
-var DEF_HIST_ID = "1Uzlnt5BtPHB8OwLvS_TrE0H9azaGL5QLd4PYEt5611M";
-var DEF_EST_ID  = "1Gt6ohFuEyQeY8hY-URxPLjX4oKGPda1BrXgLuTx3wrc";
+var DEF_HIST_ID = "1fYAY8quxOx3UPhf2HiPDR7JvDtz4eHY0BO6dzKQ0I4k";
+var DEF_EST_ID  = "1524dJe1C6Sz5GcEjGY3VK7aS9vfD2qEfwAQtfUHQsps";
 
 var VALID_CLIENTS = new Set([5011124, 8665087, 5901359, 4003984]);
 
